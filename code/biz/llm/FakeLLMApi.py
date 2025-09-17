@@ -35,3 +35,8 @@ async def fakeLLMGen(text=text_poem):
 @router.post("/v1/chat/completions")
 async def fakeLLMStream(request: Request):
     return StreamingResponse(fakeLLMGen(), media_type="text/plain")
+
+
+@router.get('/v1/models')
+def fakeLLMlistModels():
+    return LLMTool.getModeListJson()

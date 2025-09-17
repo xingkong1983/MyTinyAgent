@@ -3,70 +3,55 @@ import json
 import asyncio
 class LLMTool:
     @staticmethod
+    def getChunk(text, id="fake-id",model="fake-model", stop=None):
+        chunk = {
+            "id": id,
+            "object": "chat.completion.chunk",
+            "created": int(time.time()),
+            "model": model,
+            "choices": [{"index": 0,"delta": {"content": text},"finish_reason": stop}]
+        }
+        return json.dumps(chunk)
+
+    @staticmethod
     async def putChar( text, id="fake-id",  model="fake-model",  sleepTime = 0.01):
         for ch in text:
-            chunk = {
-                "id": id,
-                "object": "chat.completion.chunk",
-                "created": int(time.time()),
-                "model": model,
-                "choices": [
-                    {
-                        "index": 0,
-                        "delta": {"content": ch},
-                        "finish_reason": None
-                    }
-                ]
-            }
-            yield f"data: {json.dumps(chunk)}\n\n"
+            chunk = LLMTool.getChunk(ch,id, model)
+            yield f"data: {chunk}\n\n"
             if sleepTime > 0:
                 await asyncio.sleep(sleepTime)
 
     @staticmethod
     async def putLine(text, id="fake-id",  model="fake-model",  sleepTime = 0.01):
         for line in text.splitlines(keepends=True):   # keepends=True 保留原始换行
-            chunk = {
-                "id": id,
-                "object": "chat.completion.chunk",
-                "created": int(time.time()),
-                "model": model,
-                "choices": [
-                    {
-                        "index": 0,
-                        "delta": {"content": line},
-                        "finish_reason": None
-                    }
-                ]
-            }
-            yield f"data: {json.dumps(chunk)}\n\n"
+            chunk = LLMTool.getChunk(line,id,model)
+            yield f"data: {chunk}\n\n"
             if sleepTime > 0:
                 await asyncio.sleep(sleepTime)
             
     @staticmethod
     async def putEnd(id="fake-id",  model="fake-model"):
-        end_chunk = {
-            "id": id,
-            "object": "chat.completion.chunk",
-            "created": int(time.time()),
-            "model": model,
-            "choices": [{"index": 0, "delta": {}, "finish_reason": "stop"}]
-        }
-        yield f"data: {json.dumps(end_chunk)}\n\n"
+        end_chunk = LLMTool.getChunk("",id,model, "stop")
+        yield f"data: {end_chunk}\n\n"
         yield "data: [DONE]\n\n"
 
-
     @staticmethod
-    def getStopJson(text, id="fake-id",  model="fake-model"):
-        return {
-            "choices": [
+    def getModeListJson():
+        modeList  = {
+            "object": "list",
+            "data": [
                 {
-                    "message": {"role": "assistant", "content": text},
-                    "finish_reason": "stop",
-                    "index": 0
+                "id": "mywen:4b",
+                "object": "model",
+                "created": 1758116481,
+                "owned_by": "fake-llm-org"
+                },
+                {
+                "id": "mywen:8b",
+                "object": "model",
+                "created": 1758116501,
+                "owned_by": "fake-llm-org"
                 }
-            ],
-            "created": int(time.time()),
-            "id": id,
-            "model": model,
-            "object": "chat.completion"
+            ]
         }
+        return modeList
