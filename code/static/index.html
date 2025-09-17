@@ -6,54 +6,51 @@
   <title>My Tiny AI Agent</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="/static/css/lib/minireset.min.css">
+  <link rel="stylesheet" href="/static/css/theme.css">
   <link rel="stylesheet" href="/static/css/lib/github.min.css">
   <link rel="stylesheet" href="/static/css/lib/github-markdown.css">
-  <link rel="stylesheet" href="/static/css/layout/main.css">
+  <link rel="stylesheet" href="/static/css/layout/body.css">
+  <link rel="stylesheet" href="/static/css/layout/layout.css">
+  <link rel="stylesheet" href="/static/css/view/chatview.css">
+
+  <link rel="stylesheet" href="/static/css/ui/ui-icon.css">
   <link rel="stylesheet" href="/static/css/ui/ui-form.css">
   <link rel="stylesheet" href="/static/css/ui/ui-scrollbar.css">
   <link rel="stylesheet" href="/static/css/ui/ui-tabs.css">
   <link rel="stylesheet" href="/static/css/ui/ui-select.css">
-
 </head>
 
 <body>
   <header>
     <div class="logo">
-      <div class="logo-icon">T</div>
-      <div class="logo-title">我的小助理</div>
+      <div class="textIcon">T</div>
+      <div class="title">我的小助理</div>
     </div>
     <div class="user">
-      <img class="user-avatar" src="/static/img/avatar.png">萨摩多罗
+      <img class="avatar" src="/static/img/avatar.png">萨摩多罗
     </div>
     </div>
   </header>
-  <main>
-    <div class="sidebar-left">
-      <div class="sidebar-svg-wrapper">
-        <img src="/static/img/svg/sidebar.svg"></img>
-      </div>
-      <button class="sidebar-button">
-        <img src="/static/img/svg/new.svg"></img>
-        新建对话
+  <div class="layout">
+    <aside class="left">
+      <img class="icon24" src="/static/img/svg/sidebar.svg"></img>
+      <button class="button">
+        <img class="icon20" src="/static/img/svg/new.svg"></img>新建对话
       </button>
-      <div class="sidebar-logs">
-        <div class="logs-tag">今天</div>
-        <div class="log-item truncate">苹果笔记本支持32B配置</div>
-        <div class="log-item truncate">Win11微信多开BAT脚本</div>
+      <div class="logList">
+        <div class="tag">今天</div>
+        <div class="item truncate">苹果笔记本支持32B配置</div>
+        <div class="item truncate">Win11微信多开BAT脚本</div>
       </div>
-    </div>
-    <div id="app">
-      <h1 style=" margin-block-start: 0px;margin-block-end: 0;display: flex;align-items: center;">
+    </aside>
+    <main>
+      <section>
         聊天客户端（流式）
-      </h1>
-      <div id="chat" style="flex: 1;overflow: auto; margin:16px 0;"></div>
+      </section>
+      <section id="chat" style="flex: 1;overflow: auto; margin:16px 0;"></section>
       <textarea id="prompt" placeholder="说点什么…"></textarea>
       <div class="model-select">
         <div class="select-container" id="select2">
-          <!-- <div class="select-header">
-                <span class="select-placeholder">搜索并选择模型</span>
-              <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
-          </div> -->
           <div class="select-header">
             <span class="select-value">K1.5 响应迅速，视觉理解</span>
             <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
@@ -79,15 +76,13 @@
           </div>
         </div>
       </div>
-
       <div style="display:flex;align-items:center;gap:8px">
         <button id="sendBtn">发送</button>
         <button id="stopBtn" style="background:#d73a49;color:#fff">停止</button>
         <span id="loading" style="display:none;font-size:14px;color:#656d76">思考中…</span>
       </div>
-    </div>
-
-    <div class="sidebar-right">
+    </main>
+    <aside class="right">
       <div class="tabs-container">
         <div id="myTabs" class="tabs">
           <div class="tabs-header">
@@ -114,11 +109,12 @@
                 </ul>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-  </main>
+    </aside>
+  </div>
+
   <footer>
     版本 V 1.00
   </footer>

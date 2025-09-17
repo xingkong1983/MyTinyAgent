@@ -1,26 +1,3 @@
-.content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    background: #fff;
-    border-right: 1px solid #d0d7de;
-    border-left: 1px solid #d0d7de;
-}
-
-.sidebar-left {
-    display: flex;
-    flex-direction: column;
-    width: 220px;
-    min-width: 160px;
-    background-color: #f6f8fa;
-}
-
-.sidebar-right {
-    min-width: 160px;
-    width: 240px;
-    background-color: white;
-    overflow: auto;
-}
 
 .gutter {
     background-color: #eee;
@@ -35,9 +12,7 @@
 }
 
 
-.sidebar-svg-wrapper {
-    text-align: right;
-}
+
 
 .sidebar-svg {
     cursor: pointer;

@@ -51,20 +51,9 @@ header .logo {
   gap:10px;
 }
 
-header .logo-icon {
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  background-color: #333;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  font-weight: bold;
-}
 
-header .logo-title {
+
+header .title {
   font-size: 14px;
   font-weight: bold;
 }
@@ -75,7 +64,7 @@ header .user {
   gap:10px;
 }
 
-header .user-avatar {
+header .avatar {
   width: 28px;
   height: 28px;
   border-radius: 100%;
