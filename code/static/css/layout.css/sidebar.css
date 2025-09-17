@@ -1,0 +1,106 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: #fff;
+    border-right: 1px solid #d0d7de;
+    border-left: 1px solid #d0d7de;
+}
+
+.sidebar-left {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    min-width: 160px;
+    background-color: #f6f8fa;
+}
+
+.sidebar-right {
+    min-width: 160px;
+    width: 240px;
+    background-color: white;
+    overflow: auto;
+}
+
+.gutter {
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+#chat {
+    flex: 1;
+    overflow: auto;
+    margin: 16px 0
+}
+
+
+.sidebar-svg-wrapper {
+    text-align: right;
+}
+
+.sidebar-svg {
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.sidebar-svg:hover {
+    background-color: #e8e8e8;
+}
+
+.sidebar-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    color: #262626;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.sidebar-button:hover {
+    border: 1px solid #e5e7eb;
+}
+
+.sidebar-logs {
+    margin-top: 12px;
+}
+
+.logs-tag {
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.log-item {
+    padding: 8px;
+    text-align: left;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.log-item:hover {
+    background-color: #f0f0f0;
+    ;
+}
+
+
+.model-select {
+    position: absolute;
+    bottom: 51px;
+    right: 56px;
+}

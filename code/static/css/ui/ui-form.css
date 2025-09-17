@@ -1,0 +1,111 @@
+/* ======================
+  按钮核心样式
+========================*/
+.btn {
+  /* 外观 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .55rem 1.2rem;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform .06s ease, box-shadow .06s ease,
+              background-color .12s ease, border-color .12s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 主要按钮（带强调色） */
+.btn.primary {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* 3. 交互状态 */
+.btn:hover {
+  border-color: var(--accent-hover);
+}
+.btn.primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 0 rgba(0,0,0,.05);
+}
+.btn.primary:active {
+  background: var(--accent-active);
+  border-color: var(--accent-active);
+}
+
+/* 4. 键盘可访问性 */
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+
+
+.input-shell {
+  display: flex;
+  align-items: flex-end;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+
+.input-shell:focus-within {
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 3px var(--focus-ring)32, var(--shadow);
+}
+
+textarea {
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: .95rem;
+  line-height: 1.45;
+  padding: .75rem 1rem;
+  max-height: 120px;        /* 最大高度：约 5 行 */
+  font-family: inherit;
+}
+
+textarea::placeholder {
+  color: var(--muted);
+}
+
+
+/* 输入区 */
+textarea {
+    min-height: 100px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 14px;
+    resize: vertical
+}
+
+button {
+    cursor: pointer;
+    background: #238636;
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin-top: 8px;
+    font-size: 14px
+}

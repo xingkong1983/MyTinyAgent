@@ -1,0 +1,7 @@
+fastapi
+jinja2
+pypinyin
+openai
+charset-normalizer>=2,<4
+urllib3>=1.21.1,<3
+uvicorn[standard]
