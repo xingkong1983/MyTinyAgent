@@ -129,11 +129,11 @@
   <script src="/static/js/lib/highlight.min.js"></script>
   <script src="/static/js/lib/echarts.min.js"></script>
   <script src="/static/js/lib/split.min.js"></script>
+  <script src="/static/js/ui/MySplit.js"></script>
   <script src="/static/js/ui/tabs.js"></script>
   <script src="/static/js/ui/select.js"></script>
   <script src="/static/js/llm/ChatBox.js"></script>
   <script src="/static/js/llm/llmClient.js"></script>
-
   <script>
     const tabs = new Tabs('#myTabs', {
       initialTab: 0,          // 初始显示的标签页索引
@@ -176,22 +176,8 @@
 
     // 初始化 split.js 实例
     document.addEventListener('DOMContentLoaded', function () {
-      Split(['#left', '#main', '#right'], {
-        sizes: [14, 60, 26],
-        minSize: [160, 0, 160], // 分别为左侧边栏、主内容区、右侧边栏设置最小宽度
-        gutterSize: 4,
-        elementStyle: function (dimension, size, gutterSize) {
-          return {
-            'flex-basis': 'calc(' + size + '% - ' + gutterSize + 'px)'
-          }
-        },
-        gutterStyle: function (dimension, gutterSize) {
-          return {
-            'flex-basis': gutterSize + 'px'
-          }
-        }
-      });
-      });
+     const mySplit = new MySplit("#left", "#main", "#right");
+    });
 
     //   // 添加点击事件监听器
     //   const sidebarSvg = document.querySelector('.sidebar-svg');
