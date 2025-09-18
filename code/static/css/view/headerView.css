@@ -1,0 +1,23 @@
+header .logo {
+  display: flex;
+  align-items: center;
+  gap:10px;
+}
+
+header .title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+header .user {
+  display: flex;
+  align-items: center;
+  gap:10px;
+}
+
+header .avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+  background-color: #f0f0f0;
+}

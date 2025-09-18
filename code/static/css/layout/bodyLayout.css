@@ -20,7 +20,6 @@ header {
   line-height: 50px;
   background-color: #fff;
   border-bottom: 1px solid #eee;
-
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
@@ -33,7 +32,6 @@ main {
   overflow: hidden;
 }
 
-
 footer {
   display: flex;
   width: 100%;
@@ -44,29 +42,3 @@ footer {
   padding: 0 10px;
 }
 
-
-header .logo {
-  display: flex;
-  align-items: center;
-  gap:10px;
-}
-
-
-
-header .title {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-header .user {
-  display: flex;
-  align-items: center;
-  gap:10px;
-}
-
-header .avatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 100%;
-  background-color: #f0f0f0;
-}

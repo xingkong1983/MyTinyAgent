@@ -1,9 +1,5 @@
 
-.gutter {
-    background-color: #eee;
-    background-repeat: no-repeat;
-    background-position: 50%;
-}
+
 
 #chat {
     flex: 1;
@@ -39,38 +35,6 @@
 
 .sidebar-button:hover {
     border: 1px solid #e5e7eb;
-}
-
-.sidebar-logs {
-    margin-top: 12px;
-}
-
-.logs-tag {
-    font-size: 14px;
-    color: #666;
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-
-.log-item {
-    padding: 8px;
-    text-align: left;
-    border-radius: 4px;
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 4px;
-    cursor: pointer;
-}
-
-.truncate {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.log-item:hover {
-    background-color: #f0f0f0;
-    ;
 }
 
 

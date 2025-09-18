@@ -9,15 +9,20 @@
   <link rel="stylesheet" href="/static/css/theme.css">
   <link rel="stylesheet" href="/static/css/lib/github.min.css">
   <link rel="stylesheet" href="/static/css/lib/github-markdown.css">
-  <link rel="stylesheet" href="/static/css/layout/body.css">
-  <link rel="stylesheet" href="/static/css/layout/layout.css">
-  <link rel="stylesheet" href="/static/css/view/chatview.css">
-
+  <link rel="stylesheet" href="/static/css/layout/bodyLayout.css">
+  <link rel="stylesheet" href="/static/css/layout/mainLayout.css">
+  
   <link rel="stylesheet" href="/static/css/ui/ui-icon.css">
   <link rel="stylesheet" href="/static/css/ui/ui-form.css">
   <link rel="stylesheet" href="/static/css/ui/ui-scrollbar.css">
   <link rel="stylesheet" href="/static/css/ui/ui-tabs.css">
   <link rel="stylesheet" href="/static/css/ui/ui-select.css">
+  <link rel="stylesheet" href="/static/css/ui/ui-split.css">
+  <link rel="stylesheet" href="/static/css/view/headerView.css">
+  <link rel="stylesheet" href="/static/css/view/footerView.css">
+  <link rel="stylesheet" href="/static/css/view/leftView.css">
+  <link rel="stylesheet" href="/static/css/view/mainView.css">
+
 </head>
 
 <body>
@@ -32,10 +37,12 @@
     </div>
   </header>
   <div class="layout">
-    <aside class="left">
+    <aside class="left" id="left">
+      <div class = "closeBar">
       <img class="icon24" src="/static/img/svg/sidebar.svg"></img>
+      </div>
       <button class="button">
-        <img class="icon20" src="/static/img/svg/new.svg"></img>新建对话
+        <img class="icon20" id= "sidebarIcon" src="/static/img/svg/new.svg"></img>新建对话
       </button>
       <div class="logList">
         <div class="tag">今天</div>
@@ -43,7 +50,7 @@
         <div class="item truncate">Win11微信多开BAT脚本</div>
       </div>
     </aside>
-    <main>
+    <main id="main">
       <section>
         聊天客户端（流式）
       </section>
@@ -82,7 +89,7 @@
         <span id="loading" style="display:none;font-size:14px;color:#656d76">思考中…</span>
       </div>
     </main>
-    <aside class="right">
+    <aside class="right" id="right">
       <div class="tabs-container">
         <div id="myTabs" class="tabs">
           <div class="tabs-header">
@@ -152,26 +159,24 @@
   <script>
     const apiBase = 'http://127.0.0.1:5800/fakeLLM/v1/chat/completions';
     const model = 'mywen3:0.1b';
-    client = new LLMClient({
-      apiBase: apiBase,
-      model: model, token: 'sk-test', botId: 'bot-007'
-    })
-    new ChatBox({
-      client,
-      idList: {
-        chat: 'chat',
-        input: 'prompt',
-        tips: 'loading',
-        sendBtn: 'sendBtn',
-        stopBtn: 'stopBtn'
-      }
-    });
+    // client = new LLMClient({
+    //   apiBase: apiBase,
+    //   model: model, token: 'sk-test', botId: 'bot-007'
+    // })
+    // new ChatBox({
+    //   client,
+    //   idList: {
+    //     chat: 'chat',
+    //     input: 'prompt',
+    //     tips: 'loading',
+    //     sendBtn: 'sendBtn',
+    //     stopBtn: 'stopBtn'
+    //   }
+    // });
 
-  </script>
-  <script>
     // 初始化 split.js 实例
     document.addEventListener('DOMContentLoaded', function () {
-      Split(['.sidebar-left', '#app', '.sidebar-right'], {
+      Split(['#left', '#main', '#right'], {
         sizes: [14, 60, 26],
         minSize: [160, 0, 160], // 分别为左侧边栏、主内容区、右侧边栏设置最小宽度
         gutterSize: 4,
@@ -186,30 +191,31 @@
           }
         }
       });
-
-      // 添加点击事件监听器
-      const sidebarSvg = document.querySelector('.sidebar-svg');
-      const sidebarSvgCollapse = document.querySelector('.sidebar-svg-collapse');
-      const sidebarLeft = document.querySelector('.sidebar-left');
-
-      sidebarSvg.addEventListener('click', function () {
-        sidebarLeft.classList.toggle('collapsed');
-        if (sidebarLeft.classList.contains('collapsed')) {
-          sidebarSvgCollapse.style.display = 'inline-block';
-        } else {
-          sidebarSvgCollapse.style.display = 'none';
-        }
       });
 
-      sidebarSvgCollapse.addEventListener('click', function () {
-        sidebarLeft.classList.toggle('collapsed');
-        if (sidebarLeft.classList.contains('collapsed')) {
-          sidebarSvgCollapse.style.display = 'inline-block';
-        } else {
-          sidebarSvgCollapse.style.display = 'none';
-        }
-      });
-    });
+    //   // 添加点击事件监听器
+    //   const sidebarSvg = document.querySelector('.sidebar-svg');
+    //   const sidebarSvgCollapse = document.querySelector('.sidebar-svg-collapse');
+    //   const sidebarLeft = document.querySelector('.sidebar-left');
+
+    //   sidebarSvg.addEventListener('click', function () {
+    //     sidebarLeft.classList.toggle('collapsed');
+    //     if (sidebarLeft.classList.contains('collapsed')) {
+    //       sidebarSvgCollapse.style.display = 'inline-block';
+    //     } else {
+    //       sidebarSvgCollapse.style.display = 'none';
+    //     }
+    //   });
+
+    //   sidebarSvgCollapse.addEventListener('click', function () {
+    //     sidebarLeft.classList.toggle('collapsed');
+    //     if (sidebarLeft.classList.contains('collapsed')) {
+    //       sidebarSvgCollapse.style.display = 'inline-block';
+    //     } else {
+    //       sidebarSvgCollapse.style.display = 'none';
+    //     }
+    //   });
+    // });
   </script>
 </body>
 
