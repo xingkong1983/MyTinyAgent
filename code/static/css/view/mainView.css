@@ -44,6 +44,8 @@ main section .msg-header {
   font-size: 12px;
   font-weight: bold;
   color: #A8B0BB;
+  line-height: 30px;
+  gap:4px;
 }
 
 main section .msg-avatar {

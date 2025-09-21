@@ -71,7 +71,7 @@ class ChatBox {
           <img class="icon20" src="/static/img/avatar/user.svg"></img>
           <div>用户</div>
         </div>
-        <div class="msg-content">
+        <div class="msg-content markdown-body">
           ${e.detail.content}
         </div>
       `;
@@ -81,7 +81,7 @@ class ChatBox {
           <img class="icon20" src="/static/img/avatar/assistant.svg"></img>
           <div>Qwen32b</div>
         </div>
-        <div class="msg-content">
+        <div class="msg-content markdown-body">
           ${e.detail.content}
         </div>
       `
