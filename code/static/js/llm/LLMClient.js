@@ -85,16 +85,17 @@ class LLMClient extends EventTarget {
       this.curBlock.content += text;
       this.emit('chat-update', { ...this.curBlock });
     }
-    
+    //console.log(this.curBlock.content)
   }
 
   handleDelta(delta) {
     this.push('assistant', delta);
+   
   }
 
-  emit(type, data = {}) {
-    data.botId = this.botId;
-    this.dispatchEvent(new CustomEvent(type, { data }));
+  emit(type, detail) {
+    detail = { ...detail, botId: this.botId };
+    this.dispatchEvent(new CustomEvent(type, { detail:detail }));
   }
 }
 

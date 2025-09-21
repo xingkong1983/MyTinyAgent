@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/static/css/lib/github-markdown.css">
   <link rel="stylesheet" href="/static/css/layout/bodyLayout.css">
   <link rel="stylesheet" href="/static/css/layout/mainLayout.css">
-  
+
   <link rel="stylesheet" href="/static/css/ui/ui-icon.css">
   <link rel="stylesheet" href="/static/css/ui/ui-form.css">
   <link rel="stylesheet" href="/static/css/ui/ui-scrollbar.css">
@@ -38,11 +38,11 @@
   </header>
   <div class="layout">
     <aside class="left" id="left">
-      <div class = "closeBar">
-      <img class="icon24" src="/static/img/svg/sidebar.svg"></img>
+      <div class="closeBar">
+        <img class="icon24" src="/static/img/svg/sidebar.svg"></img>
       </div>
       <button class="button">
-        <img class="icon20" id= "sidebarIcon" src="/static/img/svg/new.svg"></img>新建对话
+        <img class="icon20" id="sidebarIcon" src="/static/img/svg/new.svg"></img>新建对话
       </button>
       <div class="logList">
         <div class="tag">今天</div>
@@ -51,42 +51,50 @@
       </div>
     </aside>
     <main id="main">
-      <section>
+      <div class="title">
         聊天客户端（流式）
-      </section>
-      <section id="chat" style="flex: 1;overflow: auto; margin:16px 0;"></section>
-      <textarea id="prompt" placeholder="说点什么…"></textarea>
-      <div class="model-select">
-        <div class="select-container" id="select2">
-          <div class="select-header">
-            <span class="select-value">K1.5 响应迅速，视觉理解</span>
-            <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
+      </div>
+      <article id="chat" class="chat">
+
+      </article>
+
+      <div class="chatPanel">
+        <textarea id="prompt" placeholder="说点什么…"></textarea>
+        <div class="chatBar">
+          
+          <div class="model-select">
+            <div class="select-container" id="select2">
+              <div class="select-header">
+                <span class="select-value">K1.5 响应迅速，视觉理解</span>
+                <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
+              </div>
+              <div class="select-options">
+                <div class="select-search">
+                  <input type="text" placeholder="搜索模型...">
+                </div>
+                <div class="select-option" data-value="k2">
+                  <i class="fas fa-crown"></i>
+                  <div>
+                    <div>K2 新模型 <span class="option-tag">推荐</span></div>
+                    <div class="option-description">旗舰模型，默认推荐</div>
+                  </div>
+                </div>
+                <div class="select-option" data-value="k1.5">
+                  <i class="fas fa-bolt"></i>
+                  <div>
+                    <div>K1.5</div>
+                    <div class="option-description">响应迅速，视觉理解</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="select-options">
-            <div class="select-search">
-              <input type="text" placeholder="搜索模型...">
-            </div>
-            <div class="select-option" data-value="k2">
-              <i class="fas fa-crown"></i>
-              <div>
-                <div>K2 新模型 <span class="option-tag">推荐</span></div>
-                <div class="option-description">旗舰模型，默认推荐</div>
-              </div>
-            </div>
-            <div class="select-option" data-value="k1.5">
-              <i class="fas fa-bolt"></i>
-              <div>
-                <div>K1.5</div>
-                <div class="option-description">响应迅速，视觉理解</div>
-              </div>
-            </div>
+          <div>
+            <button id="sendBtn">发送</button>
+            <button id="stopBtn">停止</button>
+            <span id="loading" style="display:none;">思考中…</span>
           </div>
         </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px">
-        <button id="sendBtn">发送</button>
-        <button id="stopBtn" style="background:#d73a49;color:#fff">停止</button>
-        <span id="loading" style="display:none;font-size:14px;color:#656d76">思考中…</span>
       </div>
     </main>
     <aside class="right" id="right">
@@ -121,7 +129,6 @@
       </div>
     </aside>
   </div>
-
   <footer>
     版本 V 1.00
   </footer>
@@ -159,24 +166,24 @@
   <script>
     const apiBase = 'http://127.0.0.1:5800/fakeLLM/v1/chat/completions';
     const model = 'mywen3:0.1b';
-    // client = new LLMClient({
-    //   apiBase: apiBase,
-    //   model: model, token: 'sk-test', botId: 'bot-007'
-    // })
-    // new ChatBox({
-    //   client,
-    //   idList: {
-    //     chat: 'chat',
-    //     input: 'prompt',
-    //     tips: 'loading',
-    //     sendBtn: 'sendBtn',
-    //     stopBtn: 'stopBtn'
-    //   }
-    // });
+    client = new LLMClient({
+      apiBase: apiBase,
+      model: model, token: 'sk-test', botId: 'bot-007'
+    })
+    new ChatBox({
+      client,
+      idList: {
+        'chat': 'chat',
+        'input': 'prompt',
+        'tips': 'loading',
+        'sendBtn': 'sendBtn',
+        'stopBtn': 'stopBtn'
+      }
+    });
 
     // 初始化 split.js 实例
     document.addEventListener('DOMContentLoaded', function () {
-     const mySplit = new MySplit("#left", "#main", "#right");
+      const mySplit = new MySplit("#left", "#main", "#right");
     });
 
     //   // 添加点击事件监听器

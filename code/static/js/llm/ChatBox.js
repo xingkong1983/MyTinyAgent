@@ -13,67 +13,86 @@
 class ChatBox {
   constructor({ client, idList }) {
     this.client = client;
-    this.bindDOM();
+    this.bindDOM(idList);
     this.bindEvent();
   }
 
   bindDOM(idList) {
     this.inp = document.getElementById(idList.input);
     this.chat = document.getElementById(idList.chat);
-    this.send = document.getElementById(idList.sendBtn);
-    this.stop = document.getElementById(idList.stopBtn);
+    this.sendBtn = document.getElementById(idList.sendBtn);
+    this.stopBtn = document.getElementById(idList.stopBtn);
     this.tips = document.getElementById(idList.tips);
 
-    if (!this.chat || !this.inp || !this.send || !this.stop)
+    if (!this.chat || !this.inp || !this.sendBtn || !this.stopBtn)
       throw new Error('ChatBox: 缺少必要 DOM ID');
 
 
   }
 
   bindEvent() {
-    this.client.on('chat-start', () => this.setLoading(true));
-    this.client.on('chat-done', () => this.setLoading(false));
-    this.client.on('chat-new', ({ data }) => this.new(data));
-    this.client.on('chat-update', ({ data }) => this.update(data));
+    this.client.addEventListener('chat-start', () => this.setLoading(true));
+    this.client.addEventListener('chat-done', () => this.setLoading(false));
+    this.client.addEventListener('chat-add', e => this.addChat(e));
+    this.client.addEventListener('chat-update', e => this.updateChat(e));
 
-    this.send.onclick = () => {
+    this.sendBtn.onclick = () => {
       this.send()
     };
     
-    this.stop.onclick = () => {
+    this.stopBtn.onclick = () => {
       this.client.stop()
     };
 
     this.inp.addEventListener('keydown', e => {
-      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) this._send();
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) this.send();
     });
   }
 
   send() {
-    const text = this.ui.inp.value.trim();
+    const text = this.inp.value.trim();
     if (!text) return;
-    this.ui.inp.value = '';
+    this.inp.value = '';
     this.client.send(text);
   }
 
   setLoading(on) {
-    this.ui.send.style.display = on ? 'none' : 'inline-block';
-    this.ui.stop.style.display = on ? 'inline-block' : 'none';
-    this.ui.box.classList.toggle('loading', on);
+    this.sendBtn.style.display = on ? 'none' : 'inline-block';
+    this.stopBtn.style.display = on ? 'inline-block' : 'none';
+    this.tips.classList.toggle('loading', on);
   }
 
-  new({ role, content }) {
-
-    if (!div) {
-      div = document.createElement('div');
-      div.className = `msg-content`;
-      div.innerHTML = marked.parse(content);
-      this.ui.chat.appendChild(div);
+  addChat(e) {
+    console.log('新建聊天块', e);
+    const section = document.createElement('section');
+    if(e.detail.role === "user"){
+      section.innerHTML += `
+        <div class="msg-head">
+          <img class="icon20" src="/static/img/avatar/user.svg"></img>
+          <span>Qwen32b</span>
+        </div>
+        <div class="content">
+          ${e.detail.content}
+        </div>
+      `;
+    } else {
+      section.innerHTML = `
+        <div class="msg-head">
+          <img class="icon20" src="/static/img/avatar/assistant.svg"></img>
+          <span>Qwen32b</span>
+        </div>
+        <div class="content">
+          ${e.detail.content}
+        </div>
+      `
     }
-    this.ui.chat.scrollTop = this.ui.chat.scrollHeight;
+
+    this.chat.appendChild(section);
+
   }
-  update({ role, content }) {
-    // 获取最后的 div, 更新 div 
+
+  updateChat(e) {
+   //console.log('更新聊天块', e);
   }
 
 }
