@@ -54,9 +54,11 @@ main section .msg-avatar {
   margin-right: 10px;
 }
 
-main section .msg-question {
-  padding-left: 30px;
+main section .msg-content {
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
 
 /* 让 markdown 样式生效 */
 main section .markdown-body {

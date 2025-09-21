@@ -67,21 +67,21 @@ class ChatBox {
     const section = document.createElement('section');
     if(e.detail.role === "user"){
       section.innerHTML += `
-        <div class="msg-head">
+        <div class="msg-header">
           <img class="icon20" src="/static/img/avatar/user.svg"></img>
-          <span>Qwen32b</span>
+          <div>用户</div>
         </div>
-        <div class="content">
+        <div class="msg-content">
           ${e.detail.content}
         </div>
       `;
     } else {
       section.innerHTML = `
-        <div class="msg-head">
+        <div class="msg-header">
           <img class="icon20" src="/static/img/avatar/assistant.svg"></img>
-          <span>Qwen32b</span>
+          <div>Qwen32b</div>
         </div>
-        <div class="content">
+        <div class="msg-content">
           ${e.detail.content}
         </div>
       `
@@ -92,7 +92,10 @@ class ChatBox {
   }
 
   updateChat(e) {
-   //console.log('更新聊天块', e);
+   const contentDiv = document.querySelector(
+    'div section:last-of-type .msg-content:last-of-type'
+  );
+    contentDiv.innerHTML = marked.parse(e.detail.content);
   }
 
 }
