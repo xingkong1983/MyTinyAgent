@@ -1,11 +1,11 @@
 .gutter {
-    background-color: #eee;
+    background-color: var(--gutter-bg);
     background-repeat: no-repeat;
     background-position: 100%;
 }
 
 .gutter:hover {
-    background-color: #0892c4;
+    background-color: var(--gutter-bg-hover);
     background-repeat: no-repeat;
     background-position: 100%;
 }

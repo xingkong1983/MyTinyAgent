@@ -2,14 +2,15 @@ html,
 body {
   height: 100%;
   width: 100%;
-  font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica", "Arial", sans-serif;
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  background: var(--bg);
+  color: var(--text);
 }
 
 body {
   display: flex;
   flex-direction: column;
-  background: #f6f8fa;
   overflow: hidden;
 }
 
@@ -18,8 +19,8 @@ header {
   width: 100%;
   height: 50px;
   line-height: 50px;
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border);
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
@@ -39,7 +40,7 @@ main {
     flex-direction: column;
     gap: 10px;
     flex: 1;
-    background: #fff;
+    background-color: var(--main-bg);
 }
 
 .left {
@@ -47,13 +48,13 @@ main {
     flex-direction: column;
     width: 220px;
     min-width: 160px;
-    background-color: #f6f8fa;
+    background-color: var(--left-bg);
 }
 
 .right {
     min-width: 160px;
     width: 240px;
-    background-color: white;
+    background-color: var(--right-bg);
     overflow: auto;
 }
 footer {
@@ -63,8 +64,8 @@ footer {
   width: 100%;
   height: 30px;
   line-height: 30px;
-  border-top: 1px solid #eee;
-  background-color: #fff;
+  border-top: 1px solid var(--border);
+  background-color: var(--footer-bg);
   padding: 0 10px;
   overflow: hidden;
 }
