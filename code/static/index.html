@@ -5,11 +5,16 @@
   <meta charset="utf-8">
   <title>My Tiny AI Agent</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/static/css/theme/theme-blue.css">
+  <link rel="stylesheet" href="/static/css/theme/theme-dark.css">
+  <link rel="stylesheet" href="/static/css/theme/theme-light.css">
   <link rel="stylesheet" href="/static/css/lib/minireset.min.css">
-  <link rel="stylesheet" href="/static/css/theme.css">
+   <link rel="stylesheet" href="/static/css/lib/github.min.css">
+  <link rel="stylesheet" href="/static/css/lib/github-markdown.css">
+  
 
   <link rel="stylesheet" href="/static/css/layout/bodyLayout.css">
-  <link rel="stylesheet" href="/static/css/layout/mainLayout.css">
+
 
   <link rel="stylesheet" href="/static/css/ui/ui-icon.css">
   <link rel="stylesheet" href="/static/css/ui/ui-form.css">
@@ -22,8 +27,7 @@
   <link rel="stylesheet" href="/static/css/view/leftView.css">
   <link rel="stylesheet" href="/static/css/view/mainView.css">
   
-  <link rel="stylesheet" href="/static/css/lib/github.min.css">
-  <link rel="stylesheet" href="/static/css/lib/github-markdown.css">
+ 
 
 </head>
 
@@ -132,7 +136,14 @@
     </aside>
   </div>
   <footer>
-    版本 V 1.00
+    <div class="version">
+      版本 V 1.00
+    </div>
+    <div class="theme-switcher">
+      <a href="#" class="theme-btn active" data-theme="light">浅色</a>
+      <a href="#" class="theme-btn" data-theme="dark">深色</a>
+      <a href="#" class="theme-btn" data-theme="blue">蓝色</a>
+    </div>
   </footer>
   <script src="/static/js/lib/marked.min.js"></script>
   <script src="/static/js/lib/highlight.min.js"></script>
@@ -143,6 +154,8 @@
   <script src="/static/js/ui/select.js"></script>
   <script src="/static/js/llm/ChatBox.js"></script>
   <script src="/static/js/llm/llmClient.js"></script>
+  <script src="/static/js/theme/Theme.js"></script>
+
   <script>
     const tabs = new Tabs('#myTabs', {
       initialTab: 0,          // 初始显示的标签页索引
