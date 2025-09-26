@@ -1,15 +1,17 @@
-/**
- * 纯逻辑层：负责流式请求 / 中断 / 事件派发
- * 事件：'chat-start' | 'chat-done' | 'chat-add' | 'chat-update'
- * 所有事件 data 里固定带 botId 字段
- */
-class LLMClient extends EventTarget {
-  constructor({ apiBase, model, token, botId = 'bot-007' }) {
-    super();
+class LLMClient {
+  constructor({
+    apiBase,
+    model,
+    token,
+    botId = 'bot-007',
+    eventBus = new EventBus() // 默认新建一个，也可外部传入共享实例
+  }) {
     this.apiBase = apiBase;
     this.model = model;
     this.token = token;
     this.botId = botId;
+    this.eventBus = eventBus;
+
     this.ctrl = null;
     this.curBlock = null;
     this.messages = []; // 历史记录，可选
@@ -26,7 +28,7 @@ class LLMClient extends EventTarget {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.token}`
+          Authorization: `Bearer ${this.token}`
         },
         body: JSON.stringify({
           model: this.model,
@@ -60,7 +62,7 @@ class LLMClient extends EventTarget {
           try {
             const delta = JSON.parse(data).choices?.[0]?.delta?.content || '';
             this.handleDelta(delta);
-          } catch { }
+          } catch {}
         }
       }
     } catch (e) {
@@ -73,29 +75,27 @@ class LLMClient extends EventTarget {
     }
   }
 
-  stop() { this.ctrl?.abort(); }
+  stop() {
+    this.ctrl?.abort();
+  }
 
   push(role, text = '') {
     if (!this.curBlock || this.curBlock.role !== role) {
       this.curBlock = { role, content: text };
       this.messages.push(this.curBlock);
       this.emit('chat-add', { ...this.curBlock });
-    }
-    else{
+    } else {
       this.curBlock.content += text;
       this.emit('chat-update', { ...this.curBlock });
     }
-    //console.log(this.curBlock.content)
   }
 
   handleDelta(delta) {
     this.push('assistant', delta);
-   
   }
 
-  emit(type, detail) {
-    detail = { ...detail, botId: this.botId };
-    this.dispatchEvent(new CustomEvent(type, { detail:detail }));
+  // 统一加上 botId 后发到总线
+  emit(type, detail = {}) {
+    this.eventBus.emit(type, { ...detail, botId: this.botId });
   }
 }
-

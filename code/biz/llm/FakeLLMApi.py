@@ -24,6 +24,7 @@ text_poem = """
 幸甚至哉，歌以咏志。 
 
 《观沧海》是曹操北征乌桓得胜回师途中，登临碣石山望海所作。诗人以雄浑的笔触，勾勒出大海吞吐日月、包蕴星汉的壮阔景象，借秋风中汹涌的波涛，寄寓了自己统一天下、建功立业的豪迈志向。
+chart_start{"shape":"bar","data":{"label":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"value":[120,200,150,80,70,110,130]}}chart_end
 """.strip()
 
 async def fakeLLMGen(text=text_poem):
