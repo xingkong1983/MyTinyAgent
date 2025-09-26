@@ -18,6 +18,7 @@ class ChatBox {
     this.chartRenderer = new ChartRenderer(); 
     this.bindDOM(idList);
     this.bindEvent();
+    this.bindExternal();   // <-- 新增：监听外部信号
   }
 
   bindDOM(idList) {
@@ -47,6 +48,35 @@ class ChatBox {
     });
   }
 
+  bindExternal() {
+    // 1. 外部直接塞文本并发送
+    this.eventBus.on('chat-request', e => {
+      const { text } = e.detail;
+      if (!text) return;
+      this.inp.value = text;      // 塞进输入框
+      this.send();                // 立即发送
+    });
+
+    // 2. 外部要求停止
+    this.eventBus.on('chat-stop', () => this.client.stop());
+
+    // 3. 外部要求开启新会话
+    this.eventBus.on('chat-reset', () => this.reset());
+  }
+
+
+  /*
+  // 1. 任意地方触发「直接发送」
+eventBus.emit('chat-request', { text: '帮我画上周销售饼图' });
+
+// 2. 任意地方触发「停止」
+eventBus.emit('chat-stop');
+
+// 3. 任意地方触发「新会话」
+eventBus.emit('chat-reset');
+  */
+
+
   send() {
     const text = this.inp.value.trim();
     if (!text) return;
@@ -59,6 +89,19 @@ class ChatBox {
     this.stopBtn.style.display = on ? 'inline-block' : 'none';
     this.tips.classList.toggle('loading', on);
   }
+
+  reset() {
+    // ① 先重置 LLMClient（会自己 stop）
+    this.client.reset();
+
+    // ② 再清自己
+    this.chat.innerHTML = '';
+    this.setLoading(false);
+    this.inp.value = '';
+
+    console.log('[ChatBox] 已开启新会话');
+  }
+
 
   addChat(e) {
     console.log('新建聊天块', e);

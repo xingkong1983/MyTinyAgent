@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/static/css/theme/theme-dark.css">
   <link rel="stylesheet" href="/static/css/theme/theme-light.css">
   <link rel="stylesheet" href="/static/css/lib/minireset.min.css">
-   <link rel="stylesheet" href="/static/css/lib/github.min.css">
+  <link rel="stylesheet" href="/static/css/lib/github.min.css">
   <link rel="stylesheet" href="/static/css/lib/github-markdown.css">
   <link rel="stylesheet" href="/static/css/layout/bodyLayout.css">
   <link rel="stylesheet" href="/static/css/ui/ui-icon.css">
@@ -61,7 +61,7 @@
       <div class="chatPanel">
         <textarea id="prompt" placeholder="说点什么…"></textarea>
         <div class="chatBar">
-          
+
           <div class="model-select">
             <div class="select-container" id="select2">
               <div class="select-header">
@@ -179,9 +179,10 @@
   <script>
     const apiBase = 'http://127.0.0.1:5800/fakeLLM/v1/chat/completions';
     const model = 'mywen3:0.1b';
+    const bus = new EventBus();
     client = new LLMClient({
       apiBase: apiBase,
-      model: model, token: 'sk-test', botId: 'bot-007'
+      model: model, token: 'sk-test', botId: 'bot-007',bus
     })
     new ChatBox({
       client,

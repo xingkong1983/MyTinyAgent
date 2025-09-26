@@ -17,6 +17,19 @@ class LLMClient {
     this.messages = []; // 历史记录，可选
   }
 
+
+  reset() {
+    // 1. 若正在输出，先停掉
+    this.stop();
+
+    // 2. 清空历史
+    this.messages = [];
+
+    // 3. 清空当前块指针
+    this.curBlock = null;
+  }
+
+
   async send(prompt) {
     if (!prompt) return;
     this.push('user', prompt);
